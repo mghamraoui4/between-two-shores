@@ -29,6 +29,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <script>document.documentElement.classList.add("js")</script>
 
   <script type="application/ld+json">
   {
@@ -54,6 +55,7 @@
   <a class="skip" href="#contenu">Aller au contenu</a>
 
   <header class="site-header">
+    <div class="progress" aria-hidden="true"></div>
     <div class="wrap header-in">
       <a class="brand" href="#top">Entre deux rives</a>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -72,12 +74,19 @@
   </header>
 
   <main id="contenu">
-    <!-- 2. HERO -->
-    <section id="top" class="sec sec-terre hero">
-      <div class="wrap hero-grid">
-        <div class="hero-text">
+    <!-- 2. HERO : la porte -->
+    <section id="top" class="hero sec-terre" data-hero>
+      <div class="hero-stage">
+        <div class="hero-art" aria-hidden="false">
+          <picture>
+            <source type="image/webp" srcset="assets/img/hero-art-520.webp 520w, assets/img/hero-art.webp 826w" sizes="(min-width: 900px) 60vw, 100vw">
+            <img src="assets/img/hero-art.jpg" srcset="assets/img/hero-art-520.jpg 520w, assets/img/hero-art.jpg 826w" sizes="(min-width: 900px) 60vw, 100vw" width="826" height="844" alt="Illustration de la couverture : un homme debout devant une porte ouverte, face à un paysage traversé de routes qui se croisent.">
+          </picture>
+        </div>
+        <div class="hero-light" aria-hidden="true"></div>
+        <div class="wrap hero-text" data-hero-text>
           <p class="eyebrow">Mohamed Ghamraoui</p>
-          <h1>Entre deux rives</h1>
+          <h1><span class="h1-small">Entre</span><span class="h1-big">deux rives</span></h1>
           <p class="subtitle">D'un juriste à un homme des réseaux</p>
           <blockquote class="hero-quote">
             <p>« Je n'ai jamais vraiment su à quel moment j'avais changé de rive. »</p>
@@ -89,53 +98,74 @@
           <!-- À COMPLÉTER : mois et année de parution -->
           <p class="hero-note">Parution : [MOIS ANNÉE] — précommandes ouvertes</p>
         </div>
-
-        <div class="hero-book">
-          <div class="book" aria-hidden="false">
-            <div class="book-cover">
-              <picture>
-                <source type="image/webp" srcset="assets/img/couverture-480.webp 480w, assets/img/couverture-800.webp 800w" sizes="(min-width: 900px) 340px, 70vw">
-                <img src="assets/img/couverture-800.jpg" srcset="assets/img/couverture-480.jpg 480w, assets/img/couverture-800.jpg 800w" sizes="(min-width: 900px) 340px, 70vw" width="800" height="1136" alt="Couverture d'Entre deux rives : un homme debout devant une porte ouverte, face à un paysage traversé de routes qui se croisent.">
-              </picture>
-            </div>
-            <div class="book-spine"></div>
-            <div class="book-pages"></div>
-          </div>
-        </div>
+        <a class="scroll-cue" href="#livre" aria-label="Franchir la porte : descendre vers le livre"><span>Franchir la porte</span></a>
       </div>
     </section>
 
     <!-- 3. LE LIVRE -->
-    <section id="livre" class="sec sec-creme">
-      <div class="wrap narrow">
-        <h2>Le livre</h2>
-        <p class="lead">Il y a eu le droit : les amphis de Settat, un manuel imposé, des brouillons déchirés. Puis les comptoirs. Puis les réseaux.</p>
-        <p>Entre les deux, un garçon qui cherchait sa place, des adultes qui décidaient à la sienne, et des portes qui se fermaient une à une. Deux voix racontent ce parcours : celle de Mohamed, et celle de Célia, qui dit ce qu'il n'arrive pas à dire.</p>
-        <p class="pull">Ce n'est pas le récit d'une trajectoire parfaite. C'est celui d'une traversée.</p>
+    <section id="livre" class="sec sec-creme livre">
+      <div class="wrap livre-grid">
+        <div class="livre-book">
+          <div class="book-sticky" data-book>
+            <div class="book">
+              <div class="book-cover">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/couverture-480.webp 480w, assets/img/couverture-800.webp 800w" sizes="(min-width: 900px) 340px, 70vw">
+                  <img src="assets/img/couverture-800.jpg" srcset="assets/img/couverture-480.jpg 480w, assets/img/couverture-800.jpg 800w" sizes="(min-width: 900px) 340px, 70vw" width="800" height="1136" loading="lazy" alt="Couverture du livre Entre deux rives, de Mohamed Ghamraoui.">
+                </picture>
+              </div>
+              <div class="book-spine"></div>
+              <div class="book-pages"></div>
+            </div>
+          </div>
+        </div>
+        <div class="livre-text">
+          <h2>Le livre</h2>
+          <p class="big rv">Il y a eu le droit : les amphis de Settat, un manuel imposé, des brouillons déchirés.</p>
+          <p class="huge rv" style="--d:.1s">Puis les comptoirs.</p>
+          <p class="huge rv" style="--d:.2s">Puis les réseaux.</p>
+          <p class="rv">Entre les deux, un garçon qui cherchait sa place, des adultes qui décidaient à la sienne, et des portes qui se fermaient une à une. Deux voix racontent ce parcours : celle de Mohamed, et celle de Célia, qui dit ce qu'il n'arrive pas à dire.</p>
+          <p class="pull rv">Ce n'est pas le récit d'une trajectoire parfaite. C'est celui d'une traversée.</p>
+        </div>
       </div>
     </section>
 
     <!-- 4. DEUX VOIX -->
-    <section id="voix" class="sec sec-terre">
-      <div class="wrap narrow">
+    <section id="voix" class="sec sec-terre voix" data-voix>
+      <svg class="roads" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M-20 560 C 250 540, 380 330, 520 300 S 800 140, 1020 120" pathLength="1"/>
+        <path d="M-20 120 C 220 140, 420 260, 520 300 S 760 520, 1020 560" pathLength="1"/>
+      </svg>
+      <div class="wrap voix-in">
         <h2>Deux voix</h2>
-        <p>Le récit avance à deux voix. Celle de Mohamed raconte les faits, au présent des souvenirs. Celle de Célia, en italique, intervient en contrepoint : elle dit ce qu'il n'arrive pas à dire, ce qu'il tait ou n'a pas encore compris.</p>
-        <div class="voices" role="group" aria-label="Illustration des deux voix du récit">
-          <div class="voice voice-m">
+        <p class="center voix-intro rv">Le récit avance à deux voix. Celle de Mohamed raconte les faits. Celle de Célia, en italique, intervient en contrepoint : elle dit ce qu'il n'arrive pas à dire, ce qu'il tait ou n'a pas encore compris.</p>
+        <div class="dialog" role="group" aria-label="Illustration des deux voix du récit">
+          <div class="voice voice-m rv">
             <p class="voice-who">Mohamed</p>
             <!-- À COMPLÉTER : remplacer par une phrase réelle du livre (voix de Mohamed) -->
-            <p>[Phrase de Mohamed — le fait, sobrement raconté.]</p>
+            <p class="voice-line">[Phrase de Mohamed — le fait, sobrement raconté.]</p>
           </div>
-          <div class="voice voice-c">
+          <div class="voice voice-c rv" style="--d:.15s">
             <p class="voice-who">Célia</p>
             <!-- À COMPLÉTER : remplacer par une phrase réelle du livre (voix de Célia) -->
-            <p><em>[Réponse de Célia — ce que Mohamed n'arrive pas à dire.]</em></p>
+            <p class="voice-line"><em>[Réponse de Célia — ce que Mohamed n'arrive pas à dire.]</em></p>
+          </div>
+          <div class="voice voice-m rv">
+            <p class="voice-who">Mohamed</p>
+            <!-- À COMPLÉTER : seconde phrase réelle (voix de Mohamed) -->
+            <p class="voice-line">[Seconde phrase de Mohamed.]</p>
+          </div>
+          <div class="voice voice-c rv" style="--d:.15s">
+            <p class="voice-who">Célia</p>
+            <!-- À COMPLÉTER : seconde réponse réelle (voix de Célia) -->
+            <p class="voice-line"><em>[Seconde réponse de Célia.]</em></p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. EXTRAIT -->
+    
+<!-- 5. EXTRAIT -->
     <section id="extrait" class="sec sec-creme">
       <div class="wrap narrow">
         <h2>Extrait</h2>

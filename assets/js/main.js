@@ -28,6 +28,50 @@
     moreBtn.textContent = open ? 'Lire la suite' : 'Replier';
   });
 
+  // Animations liées au défilement (désactivées si l'utilisateur préfère moins de mouvement)
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v) { return Math.min(1, Math.max(0, v)); };
+  var hero = document.querySelector('[data-hero]');
+  var heroText = document.querySelector('[data-hero-text]');
+  var book = document.querySelector('[data-book]');
+  var voix = document.querySelector('[data-voix]');
+  var bar = document.querySelector('.progress');
+
+  function onScroll() {
+    var vh = window.innerHeight;
+    var doc = document.documentElement;
+    bar.style.setProperty('--sp', clamp(window.scrollY / (doc.scrollHeight - vh)));
+    if (reduce) return;
+    var r = hero.getBoundingClientRect();
+    var p = clamp(-r.top / (r.height - vh));
+    hero.style.setProperty('--p', p);
+    // le texte masqué n'est plus focalisable
+    if (p > 0.4) heroText.setAttribute('inert', ''); else heroText.removeAttribute('inert');
+    var b = book.getBoundingClientRect();
+    book.style.setProperty('--bq', clamp((vh - b.top) / (vh + b.height)) );
+    var v = voix.getBoundingClientRect();
+    voix.style.setProperty('--vq', clamp((vh - v.top) / (v.height + vh * 0.4)));
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(function () { onScroll(); ticking = false; }); }
+  }, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Apparition des éléments .rv
+  var rvs = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.2 });
+    rvs.forEach(function (el) { io.observe(el); });
+  } else {
+    rvs.forEach(function (el) { el.classList.add('in'); });
+  }
+
   // Formulaire de précommande
   var form = document.getElementById('form');
   var status = document.getElementById('form-status');
